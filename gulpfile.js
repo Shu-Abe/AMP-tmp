@@ -12,23 +12,23 @@ gulp.task("check", function() {
 });
 
 gulp.task("sass", ['include'], function() {
-  gulp.src("./sass/style.scss")
+  gulp.src("./before/style.scss")
     .pipe(plumber())
     .pipe(sass())
     .pipe(replace('!important', ''))
-    .pipe(replace('@charset "UTF-8";', ''))
     .pipe(cssmin())
-    .pipe(gulp.dest("./parts/style.css"))
+    .pipe(replace('@charset "UTF-8";', ''))    .pipe(gulp.dest("./parts"))
 
 });
 
 gulp.task('include', function() {
   gulp.src("./before/*.html")
     .pipe(plumber())
+    .pipe(replace(/.*\<script[\s\S]*?\<\/script\>/g, ''))
+    .pipe(replace(/<!--[\s\S]*?-->/g, ''))
     .pipe(amperize())
     .pipe(fileInclude())
     .pipe(gulp.dest('./after'))
-    .pipe(notify('AMPファイルを作成しました！'));
 });
 
 

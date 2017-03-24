@@ -3,45 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>タイトルが入ります。</title>
-    <link rel="canonical" href="http://exampel.com/anpanman/">
-
-        @@include('../parts/amp-tmp.html')
-
-    <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@type": "NewsArticle",
-        "headline": "記事のタイトル",
-        "image": [
-          "eyecatch.jpg"
-        ],
-        "datePublished": "2017-03-14T00:00:00+0900"
-      }
-    </script>
-
-    <!-- Google Analytics -->
-    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <amp-analytics type="googleanalytics" id="analytics1">
-      <script type="application/json">
-        {
-          "vars": {
-            //GAアカウントを設定
-            "account": "UA-●●●●●●●●●-●●"
-          },
-          "triggers": {
-            "trackPageview": {
-              "on": "visible",
-              "request": "pageview"
-            }
-          }
-        }
-      </script>
-    </amp-analytics>
+    <link rel="canonical" href="canonicalが入ります。">
+    
+    @@include('../parts/amp-tmp.html')
+    @@include('../parts/amp-script.html')
 
 	</head>
   <body>
     <!-- ここにソースをコピーします -->
   </body>
-
-
 </html>
