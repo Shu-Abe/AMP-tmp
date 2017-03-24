@@ -4,7 +4,8 @@ var fileInclude = require('gulp-file-include');
 var cssmin = require('gulp-cssmin');
 var replace = require('gulp-replace');
 var notify = require('gulp-notify');
-var amperize = require('amperize');
+var amperize = require('gulp-amperize');
+var plumber = require("gulp-plumber");
 
 gulp.task("check", function() {
   gulp.src("./sass/style.scss")
@@ -12,23 +13,27 @@ gulp.task("check", function() {
 
 gulp.task("sass", ['include'], function() {
   gulp.src("./sass/style.scss")
+    .pipe(plumber())
     .pipe(sass())
     .pipe(replace('!important', ''))
+    .pipe(replace('@charset "UTF-8";', ''))
     .pipe(cssmin())
-    .pipe(gulp.dest("./css"))
+    .pipe(gulp.dest("./parts/style.css"))
 
 });
 
 gulp.task('include', function() {
-  gulp.src("./app/*.html")
-    .pipe(replace('/<(.*)>.*<\/\1>/', ''))
+  gulp.src("./before/*.html")
+    .pipe(plumber())
+    .pipe(amperize())
     .pipe(fileInclude())
-    .pipe(gulp.dest('./amp'))
+    .pipe(gulp.dest('./after'))
     .pipe(notify('AMPファイルを作成しました！'));
 });
 
+
 gulp.task("default", ['include'], function() {
-  gulp.watch("./sass/*.scss",["check"]);
-  gulp.watch("./sass/*.scss",["sass"]);
+  gulp.watch("./before/*.scss",["check"]);
+  gulp.watch("./before/*.scss",["sass"]);
   gulp.watch("./**/*.html",["include"]);
 });

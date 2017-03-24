@@ -8,7 +8,12 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-amperize": "^2.0.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-file-include": "^1.0.0",
     "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-replace": "^0.5.4",
     "gulp-sass": "^3.1.0"
   },
   "scripts": {
